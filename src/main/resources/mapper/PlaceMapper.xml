@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cdu.mapper.PlaceMapper">
+    <select id="selectAll" resultType="Place">
+        select * from place
+    </select>
+    <insert id="addPlace">
+        insert into place (changdi,shangjia,price,free,settime)value (#{changdi},#{shangjia},#{price},#{free},#{settime})
+    </insert>
+    <select id="selectPlaceById" resultType="Place">
+        select * from place where id=#{id}
+    </select>
+    <update id="updatePlace">
+        update place set changdi=#{changdi},shangjia=#{shangjia},price=#{price},free=#{free},settime=#{settime} where id=#{id}
+    </update>
+    <delete id="deletePlace">
+        delete from place where id=#{id};
+    </delete>
+    <!--模糊查询-->
+    <select resultType="place" id="selectPlaceByName">
+        select * from place where changdi like CONCAT('%',#{changdi},'%')
+    </select>
+
+
+</mapper>
